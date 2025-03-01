@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: cash-buddy
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${PRIV_GOOGLE_CLIENT_ID}
+            client-secret: ${PRIV_GOOGLE_CLIENT_SECRET}
