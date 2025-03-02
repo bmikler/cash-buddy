@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 const URL = 'http://localhost:8080/api/v1/test'
 
-export default function Mock({token}) {
+export default function Mock({onLogout}) {
 
     const [message, setMessage] = useState('');
 
@@ -10,7 +10,7 @@ export default function Mock({token}) {
         const fetchMessage = async () => {
             const response = await fetch(
                 URL, {
-                    headers: {'Authorization': `Bearer ${token}`}
+                    headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}
                 }
             )
             const message = await response.text()
@@ -18,14 +18,13 @@ export default function Mock({token}) {
         }
 
         fetchMessage()
-    }, [token])
+    }, [])
 
     return (
         <div>
             <h2>Mock Component</h2>
-            <p>Token: {token}</p>
-            <button>Get Message</button>
-            <p>message: {message}</p>
+            <p>Logged user: {message}</p>
+            <button onClick={onLogout}>Logout</button>
         </div>
     );
 
