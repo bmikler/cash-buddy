@@ -3,8 +3,7 @@ spring:
     name: cash-buddy
   security:
     oauth2:
-      client:
-        registration:
-          google:
-            client-id: ${PRIV_GOOGLE_CLIENT_ID}
-            client-secret: ${PRIV_GOOGLE_CLIENT_SECRET}
+      resourceserver:
+        jwt:
+          issuer-uri: https://accounts.google.com
+          jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
