@@ -11,9 +11,11 @@ import org.springframework.security.web.SecurityFilterChain
 class SecurityConfig {
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
-        http.authorizeHttpRequests { auth ->
-            auth.anyRequest().authenticated()
-        }.oauth2Login { }
+        http
+            .authorizeHttpRequests { auth -> auth.anyRequest().authenticated() }
+            .oauth2ResourceServer { it.jwt {  } }
         return http.build()
     }
+
+
 }
