@@ -8,12 +8,9 @@ function Login({onLoginSuccess}) {
             <GoogleLogin
                 className="sign"
                 onSuccess={credentialResponse => {
-                    console.log("Credential response:")
-                    console.log(credentialResponse)
                     onLoginSuccess(credentialResponse.credential)
                 }}
                 onError={() => {
-                    console.log('Login Failed');
                 }}
             /></div>
     );

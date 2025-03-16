@@ -8,9 +8,7 @@ function App() {
     const handleLoginSuccess = (newToken) => {
         localStorage.setItem('token', newToken);
         setIsLogged(true);
-        console.log("Token " + newToken + " has been set");
     };
-
 
     const handleLogout = () => {
         localStorage.removeItem('token');
