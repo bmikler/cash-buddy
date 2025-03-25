@@ -1,7 +1,7 @@
 export default function Header() {
     return (
-        <div>
-            <h1>Header</h1>
+        <div className="header-container">
+            <h1>Cash Buddy</h1>
         </div>
     );
 }

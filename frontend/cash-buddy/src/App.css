@@ -1,15 +1,61 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* App.css */
+
+/* App container: centers content and adds a subtle, modern card-like feel */
+.app-container {
+  max-width: 800px;                /* limit content width */
+  margin: 0 auto;                  /* center horizontally */
+  background-color: #1e1e1e;       /* slightly lighter than body for contrast */
+  border-radius: 8px;              /* rounded corners */
+  box-shadow: 0 0 10px rgba(0,0,0,0.5); /* subtle shadow */
+  min-height: 100vh;               /* ensure full height */
+  display: flex;                   /* flex layout so we can space the content easily */
+  flex-direction: column;
 }
 
-body {
-  background-color: #121212;
-  color: #e0e0e0;
-  font-family: 'Arial', sans-serif;
+/* Header area */
+.header-container {
+  text-align: center;
+  padding: 1rem;
+  border-bottom: 1px solid #333;
+}
+
+.header-container h1 {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  color: #E8E8E8; /* a slightly lighter shade for the heading */
   margin: 0;
+}
+
+/* Navbar container: darker gray for visual separation */
+.navbar {
+  background-color: #2C2C2C;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center; /* centers the nav links horizontally */
+}
+
+.navbar ul {
+  list-style-type: none;
+  display: flex;
+  gap: 1.5rem; /* space between menu items */
   padding: 0;
 }
 
+.navbar a {
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar a:hover {
+  background-color: #444; /* hover effect */
+}
+
+/* Main content area for <Outlet> */
+.main-content {
+  flex: 1;             /* makes this section take up remaining space */
+  padding: 2rem 1.5rem;
+}

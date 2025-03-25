@@ -4,14 +4,13 @@ import './index.css'
 import App from './App.tsx'
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import CategoryDetailsList from "./components/settings/CategoryDetailsList.tsx";
-import ExpensesSummary from "./expenses/ExpensesSummary.tsx";
+import ExpensesSummary from "./components/expenses/ExpensesSummary.tsx";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <App/>,
         children: [
-            // The 'index' route is what shows initially (empty content).
             {
                 index: true,
                 element: null

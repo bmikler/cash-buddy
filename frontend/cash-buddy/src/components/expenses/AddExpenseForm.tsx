@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import "../styles/forms.css";
+import "../../cash-buddy/src/styles/forms.css";
 
 // Mock list of categories (replace with real data from backend later)
 const mockCategories = ["Groceries", "Rent", "Utilities", "Leisure", "Travel"];

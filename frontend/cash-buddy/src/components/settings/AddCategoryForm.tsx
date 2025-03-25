@@ -1,6 +1,6 @@
-import '../styles/forms.css';
+import '../../styles/forms.css';
 import { SubmitHandler, useForm } from "react-hook-form";
-import {Frequency} from "../types/Frequency.ts";
+import {Frequency} from "../../types/Frequency.ts";
 
 type FormFields = {
     name: string;

@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
     return (
-        <nav>
-            <ul style={{ display: 'flex', listStyle: 'none', gap: '1rem' }}>
+        <nav className="navbar">
+            <ul>
                 <li>
                     <Link to="categories">Categories</Link>
                 </li>
