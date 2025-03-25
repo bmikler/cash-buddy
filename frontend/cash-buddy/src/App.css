@@ -1,47 +1,49 @@
 /* App.css */
 
-/* App container: centers content and adds a subtle, modern card-like feel */
+/* Main container: narrower width + gradient + subtle shadow */
 .app-container {
-  max-width: 800px;                /* limit content width */
-  margin: 0 auto;                  /* center horizontally */
-  background-color: #1e1e1e;       /* slightly lighter than body for contrast */
-  border-radius: 8px;              /* rounded corners */
-  box-shadow: 0 0 10px rgba(0,0,0,0.5); /* subtle shadow */
-  min-height: 100vh;               /* ensure full height */
-  display: flex;                   /* flex layout so we can space the content easily */
+  max-width: 800px;                     /* limit container width */
+  margin: 1rem auto;                    /* center horizontally, add top/bottom margin */
+  background: linear-gradient(135deg, #1e1e1e, #242424);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  min-height: 95vh;                     /* nearly full viewport height */
+  display: flex;
   flex-direction: column;
 }
 
-/* Header area */
+/* Header: bigger text, subtle border for separation */
 .header-container {
   text-align: center;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   border-bottom: 1px solid #333;
 }
 
 .header-container h1 {
   font-size: 2rem;
   letter-spacing: 1px;
-  color: #E8E8E8; /* a slightly lighter shade for the heading */
   margin: 0;
+  color: #E8E8E8; /* slightly lighter heading color */
 }
 
-/* Navbar container: darker gray for visual separation */
+/* Navbar container: dark accent bar with a bit of padding */
 .navbar {
   background-color: #2C2C2C;
   padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
   display: flex;
-  justify-content: center; /* centers the nav links horizontally */
+  justify-content: center; /* center items horizontally */
 }
 
+/* Nav items in a row, spaced out */
 .navbar ul {
   list-style-type: none;
   display: flex;
   gap: 1.5rem; /* space between menu items */
+  margin: 0;
   padding: 0;
 }
 
+/* Links: add accent color on hover */
 .navbar a {
   color: #FFFFFF;
   text-decoration: none;
@@ -50,12 +52,29 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
+/* Accent color on hover */
 .navbar a:hover {
-  background-color: #444; /* hover effect */
+  background-color: #FF4081; /* bright pink accent */
+  color: #FFFFFF;
 }
 
 /* Main content area for <Outlet> */
 .main-content {
-  flex: 1;             /* makes this section take up remaining space */
-  padding: 2rem 1.5rem;
+  flex: 1;
+  padding: 0 1.5rem;
+}
+
+/*
+   ========== Responsive tweaks ==========
+   Shrink the gap in the navbar
+   and adjust padding on smaller screens.
+*/
+@media (max-width: 600px) {
+  .navbar ul {
+    gap: 1rem; /* reduce gap on smaller screens */
+  }
+
+  .main-content {
+    padding: 1rem; /* narrower padding on smaller screens */
+  }
 }
