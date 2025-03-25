@@ -1,16 +1,17 @@
-import React from 'react';
+import {Outlet} from 'react-router-dom';
+import Header from './components/Header';
+import Navbar from './components/Navbar';
+
 import './App.css';
 
-
-import AddExpenseForm from "./components/AddExpenseForm.tsx";
-
-const App: React.FC = () => (
-    <div className="app">
-        <h1>Cash Buddy</h1>
-        <AddExpenseForm />
-        {/*<CategoryItem description={"Test"} limit={11.22} type={Frequency.ANNUAL} expenses={expenses}/>*/}
-        {/*<CategoryList categories={categories} initialExpenses={initialExpenses} />*/}
-    </div>
-);
+function App() {
+    return (
+        <div>
+            <Header/>
+            <Navbar/>
+            <Outlet/>
+        </div>
+    );
+}
 
 export default App;
