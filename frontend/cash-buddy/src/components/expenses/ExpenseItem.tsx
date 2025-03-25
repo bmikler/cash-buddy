@@ -1,4 +1,4 @@
-import '../styles/expense-item.css'
+import '../../styles/expense-item.css'
 
 export default function ExpenseItem(props: {description: string, value: number}) {
     return (

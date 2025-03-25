@@ -1,8 +1,8 @@
 import {useState} from 'react';
-import {Frequency} from "../types/Frequency.ts";
+import {Frequency} from "../../types/Frequency.ts";
 import ExpenseItem from "./ExpenseItem.tsx";
-import {Expense} from "../types/Expense.ts";
-import '../styles/category-item.css'
+import {Expense} from "../../types/Expense.ts";
+import '../../styles/category-item.css'
 
 export default function CategoryItem(props: {
     description: string,
