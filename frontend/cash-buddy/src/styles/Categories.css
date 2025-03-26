@@ -1,7 +1,7 @@
 /* CategoryDetailsList.css */
 
 /* Wrapper that holds the Add button and the list */
-.category-list-wrapper {
+.list-wrapper {
     max-width: 600px;
     margin: 2rem auto;
     display: flex;
@@ -38,7 +38,7 @@
    Each category “card”
    - We'll position the edit icon absolutely so it can appear top-right on hover
 */
-.category-card {
+.list-item-card {
     background-color: #1e1e1e;
     border: 1px solid #333;
     border-radius: 8px;
@@ -48,28 +48,11 @@
     position: relative; /* needed if we want the icon absolutely positioned */
 }
 
-.category-card:hover {
+.list-item-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
-/*
-   Edit icon button:
-   - Hidden by default
-   - Absolutely positioned top-right
-*/
-.edit-icon-btn {
-    display: none; /* hide by default, show on .category-card:hover */
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: transparent;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: #bbb;
-    transition: color 0.2s;
-}
 
 /* ---------- CategoryDetails styles ---------- */
 
@@ -106,4 +89,16 @@
 .freq-type span {
     color: #fff;
     font-weight: bold;
+}
+
+span.balance-positive {
+    color: green;
+}
+
+span.balance-zero {
+    color: white;
+}
+
+span.balance-negative {
+    color: red;
 }
