@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Frequency } from "../../types/Frequency";
 import { useNavigate } from "react-router-dom";
-import "../../styles/AddCategoryForm.css";
+import "../../styles/AddForm.css";
 import {categories} from "../../data/mockData.ts";
 import {Category} from "../../types/Category.ts";
 
@@ -31,7 +31,7 @@ export default function AddCategoryForm() {
     };
 
     return (
-        <div className="add-category-form">
+        <div className="add-form">
             {/* Back button at the top */}
             <button className="back-btn" onClick={handleBackClick}>
                 &larr; Back

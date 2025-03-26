@@ -15,12 +15,12 @@ export default function CategoryDetailsList() {
     };
 
     return (
-        <div className="category-list-wrapper">
+        <div className="list-wrapper">
             <button className="add-category-btn" onClick={handleAddCategoryClick}>+ Add Category</button>
 
             <div className="category-list-container">
                 {categories.map((cat, index) => (
-                    <div className="category-card" key={index}>
+                    <div className="list-item-card" key={index}>
                         <CategoryDetails
                             description={cat.name}
                             limit={cat.limit}

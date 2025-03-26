@@ -4,8 +4,8 @@ import './index.css'
 import App from './App.tsx'
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import CategoryDetailsList from "./components/categories/CategoryDetailsList.tsx";
-import ExpensesSummary from "./components/expenses/ExpensesSummary.tsx";
 import AddCategoryForm from "./components/categories/AddCategoryForm.tsx";
+import ExpensesSummaryList from "./components/expenses/ExpensesSummaryList.tsx";
 
 const router = createBrowserRouter([
     {
@@ -26,8 +26,13 @@ const router = createBrowserRouter([
             },
             {
                 path: 'expenses',
-                element: <ExpensesSummary/>
+                element: <ExpensesSummaryList/>
             }
+            // },
+            // {
+            //     path: 'expenses/add',
+            //     element: <AddExpenseForm />
+            // }
         ]
     }
 ]);
