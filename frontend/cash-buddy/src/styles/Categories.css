@@ -54,6 +54,30 @@
 }
 
 
+.header-with-button {
+    display: flex;
+    justify-content: space-between;  /* put space between header and button */
+    align-items: center;             /* vertically center them */
+}
+
+.add-expense-button {
+    /* basic “pill” style button */
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: 600;
+
+    /* modern color scheme */
+    background-color: #e83272;  /* pick your preferred color */
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.add-expense-button:hover {
+    background-color: #0056b3;  /* darker shade on hover */
+}
+
 /* ---------- CategoryDetails styles ---------- */
 
 /* layout for the top row (description & limit) */

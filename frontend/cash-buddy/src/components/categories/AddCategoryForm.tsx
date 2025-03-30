@@ -22,17 +22,14 @@ export default function AddCategoryForm() {
         let category: Category = {id: 1, name: data.name, limit: data.limit, frequency: data.frequency}
         categories.push(category)
         navigate("/categories");
-        // You’d typically do an API call or something else here
     };
 
-    // Handler for the “Back” button
     const handleBackClick = () => {
         navigate("/categories");
     };
 
     return (
         <div className="add-form">
-            {/* Back button at the top */}
             <button className="back-btn" onClick={handleBackClick}>
                 &larr; Back
             </button>
@@ -40,7 +37,6 @@ export default function AddCategoryForm() {
             <h2>Add New Category</h2>
 
             <form className="form-container" onSubmit={handleSubmit(onSubmit)}>
-                {/* NAME Field */}
                 <label className="form-label">
                     Category Name
                     <input
@@ -58,7 +54,6 @@ export default function AddCategoryForm() {
                 </label>
                 {errors.name && <p className="error-message">{errors.name.message}</p>}
 
-                {/* LIMIT Field */}
                 <label className="form-label">
                     Limit
                     <input
