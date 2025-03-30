@@ -40,7 +40,6 @@ export default function AddExpenseForm() {
         };
 
 
-
         console.log("Expense Submitted:", JSON.stringify(expense, null, 2));
         expenses.push(expense)
         navigate("/expenses");

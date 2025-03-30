@@ -8,20 +8,31 @@ export default function ExpensesSummaryList() {
     const navigate = useNavigate();
 
     const handleAddExpenseClick = (category: Category) => {
-        console.log("Test : " + JSON.stringify(category.name, null, 2));
         navigate("/expenses/add", { state: { category } });
     }
 
     return (
         <div className="list-wrapper">
-
             <div className="category-list-container">
                 {getExpensesSummary().map((summary, index) => (
-                    <div className="list-item-card" key={index} onClick={() => handleAddExpenseClick(summary.category)}>
-                        <ExpenseSummaryHeader
-                            categoryName={summary.category.name}
-                            balance={summary.category.limit - summary.expenses.map(e => e.value).reduce((a, b) => a + b)}
-                        />
+                    <div className="list-item-card" key={index}>
+                        {/* Add a wrapper for the header and button to align them in one row */}
+                        <div className="header-with-button">
+                            <ExpenseSummaryHeader
+                                categoryName={summary.category.name}
+                                balance={
+                                    summary.category.limit -
+                                    summary.expenses.map((e) => e.value).reduce((a, b) => a + b, 0)
+                                }
+                                expenses={summary.expenses}
+                            />
+                            <button
+                                className="add-expense-button"
+                                onClick={() => handleAddExpenseClick(summary.category)}
+                            >
+                                + Add
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>
