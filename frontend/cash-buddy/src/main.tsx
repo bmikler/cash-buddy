@@ -6,6 +6,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import CategoryDetailsList from "./components/categories/CategoryDetailsList.tsx";
 import AddCategoryForm from "./components/categories/AddCategoryForm.tsx";
 import ExpensesSummaryList from "./components/expenses/ExpensesSummaryList.tsx";
+import AddExpenseForm from "./components/expenses/AddExpenseForm.tsx";
 
 const router = createBrowserRouter([
     {
@@ -27,12 +28,11 @@ const router = createBrowserRouter([
             {
                 path: 'expenses',
                 element: <ExpensesSummaryList/>
+            },
+            {
+                path: 'expenses/add',
+                element: <AddExpenseForm />
             }
-            // },
-            // {
-            //     path: 'expenses/add',
-            //     element: <AddExpenseForm />
-            // }
         ]
     }
 ]);
