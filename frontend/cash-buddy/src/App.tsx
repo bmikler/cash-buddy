@@ -6,6 +6,7 @@ import './App.css';
 import './styles/ListStyles.css'
 import './styles/ButtonsStyles.css';
 import './styles/FormStyles.css';
+import './styles/DataStyles.css';
 
 function App() {
     return (
