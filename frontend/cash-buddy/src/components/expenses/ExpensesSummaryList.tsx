@@ -1,33 +1,45 @@
-import {getExpensesSummary} from "../../data/mockData.ts";
-import ExpenseSummaryHeader from "./ExpenseSummaryHeader.tsx";
-import {useNavigate} from "react-router-dom";
-import {Category} from "../../types/Category.ts";
+import {useNavigate} from 'react-router-dom';
+import {getExpensesSummary} from '../../data/mockData';
+import {Category} from '../../types/Category';
+import ExpenseSummaryHeader from './ExpenseSummaryHeader';
+
+import {useState} from "react";     // for .btn
 
 export default function ExpensesSummaryList() {
-
     const navigate = useNavigate();
+    const [showDetails, setShowDetails] = useState<{ [key: number]: boolean }>({});
 
     const handleAddExpenseClick = (category: Category) => {
-        navigate("/expenses/add", { state: { category } });
-    }
+        navigate('/expenses/add', {state: {category}});
+    };
+
+    const toggle = (index: number) => {
+        setShowDetails((prev) => ({
+            ...prev,
+            [index]: !prev[index],
+        }));
+    };
+
+    const summaries = getExpensesSummary();
 
     return (
-        <div className="list-wrapper">
-            <div className="category-list-container">
-                {getExpensesSummary().map((summary, index) => (
-                    <div className="list-item-card" key={index}>
-                        {/* Add a wrapper for the header and button to align them in one row */}
-                        <div className="header-with-button">
-                            <ExpenseSummaryHeader
-                                categoryName={summary.category.name}
-                                balance={
-                                    summary.category.limit -
-                                    summary.expenses.map((e) => e.value).reduce((a, b) => a + b, 0)
-                                }
-                                expenses={summary.expenses}
-                            />
+        <div className="centered-container">
+            <ul className="list-container">
+                {summaries.map((summary, index) => (
+                    <div key={index} className="list-item" onClick={() => toggle(index)}>
+
+                        <div className="list-item__top">
+                            <div className="list-item__header">
+                                <ExpenseSummaryHeader
+                                    categoryName={summary.category.name}
+                                    balance={summary.category.limit}
+                                    expenses={summary.expenses}
+                                    showDetails={!!showDetails[index]}
+                                />
+                            </div>
+
                             <button
-                                className="add-expense-button"
+                                className="btn"
                                 onClick={() => handleAddExpenseClick(summary.category)}
                             >
                                 + Add
@@ -35,7 +47,9 @@ export default function ExpensesSummaryList() {
                         </div>
                     </div>
                 ))}
-            </div>
+            </ul>
+
         </div>
+
     );
 }

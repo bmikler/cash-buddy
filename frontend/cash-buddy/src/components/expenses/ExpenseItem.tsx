@@ -1,10 +1,14 @@
 
+type ExpenseItemProps = {
+    description: string;
+    value: number;
+};
 
-export default function ExpenseItem(props: {description: string, value: number}) {
+export default function ExpenseItem({ description, value }: ExpenseItemProps) {
     return (
         <div>
-            <div className="expense-description">{props.description}</div>
-            <div className="expense-value">{props.value} PLN</div>
+            <span>{description} - </span>
+            <span>{value} PLN</span>
         </div>
     );
 }
