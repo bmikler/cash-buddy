@@ -1,80 +1,98 @@
-/* App.css */
+:root {
+    --primary-color: #5f5bd7;
+    --light-color: #f5f5ff;
+    --text-color: #333;
+    --header-height: 4rem;
+    --transition-speed: 0.3s;
+}
 
-/* Main container: narrower width + gradient + subtle shadow */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body + Global */
+body {
+    font-family: 'Inter', sans-serif; /* If you're using the import above */
+    background: linear-gradient(120deg, #F0F1F6, #FFFFFF);
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+/* Container for entire app, ensuring full height usage */
 .app-container {
-  max-width: 800px;                     /* limit container width */
-  margin: 1rem auto;                    /* center horizontally, add top/bottom margin */
-  background: linear-gradient(135deg, #1e1e1e, #242424);
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  min-height: 95vh;                     /* nearly full viewport height */
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* Header: bigger text, subtle border for separation */
-.header-container {
-  text-align: center;
-  padding: 1.5rem 1rem;
-  border-bottom: 1px solid #333;
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--header-height);
+    background-color: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.header-container h1 {
-  font-size: 2rem;
-  letter-spacing: 1px;
-  margin: 0;
-  color: #E8E8E8; /* slightly lighter heading color */
+.header-title {
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
-/* Navbar container: dark accent bar with a bit of padding */
+/* Navbar */
 .navbar {
-  background-color: #2C2C2C;
-  padding: 0.75rem 1rem;
-  display: flex;
-  justify-content: center; /* center items horizontally */
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Nav items in a row, spaced out */
-.navbar ul {
-  list-style-type: none;
-  display: flex;
-  gap: 1.5rem; /* space between menu items */
-  margin: 0;
-  padding: 0;
+.navbar-list {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem;
+    list-style: none;
 }
 
-/* Links: add accent color on hover */
-.navbar a {
-  color: #FFFFFF;
-  text-decoration: none;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  transition: background-color 0.3s, color 0.3s;
+.navbar-list li {
+    list-style: none;
 }
 
-/* Accent color on hover */
-.navbar a:hover {
-  background-color: #FF4081; /* bright pink accent */
-  color: #FFFFFF;
+/* Links in the navbar */
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
-/* Main content area for <Outlet> */
+.nav-link:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Main Content Container */
 .main-content {
-  flex: 1;
-  padding: 0 1.5rem;
+    flex-grow: 1;
+    max-width: 960px;
+    margin: 2rem auto;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-/*
-   ========== Responsive tweaks ==========
-   Shrink the gap in the navbar
-   and adjust padding on smaller screens.
-*/
-@media (max-width: 600px) {
-  .navbar ul {
-    gap: 1rem; /* reduce gap on smaller screens */
-  }
-
-  .main-content {
-    padding: 1rem; /* narrower padding on smaller screens */
-  }
+/* Mobile Friendly Adjustments */
+@media (max-width: 768px) {
+    .navbar-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
 }

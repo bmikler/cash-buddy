@@ -1,27 +1,25 @@
-import {Frequency} from "../../types/Frequency.ts";
+import { Frequency } from '../../types/Frequency';
 
-export default function CategoryDetails (
-    props: {
-        description: string,
-        limit: number,
-        type: Frequency
-    }
-) {
+type CategoryDetailsProps = {
+    description: string;
+    limit: number;
+    type: Frequency;
+};
+
+export default function CategoryDetails({ description, limit, type }: CategoryDetailsProps) {
     return (
-        <div className="category-details">
-            <div className="details-top">
-                <p className="description">{props.description}</p>
-
-                {/* limit + edit button in one row */}
-                <div className="limit-edit-row">
-                    <p className="limit">
-                        Limit: <span>{props.limit}</span>
-                    </p>
-                </div>
-            </div>
-
-            <p className="freq-type">
-                Frequency: <span>{props.type}</span>
+        <div className="details">
+            {/* You could style the name differently, but here's a minimal approach */}
+            <p className="details__value" style={{ fontWeight: '600', fontSize: '1.1rem' }}>
+                {description}
+            </p>
+            <p>
+                <span className="details__label">Limit:</span>
+                <span className="details__value">{limit}</span>
+            </p>
+            <p>
+                <span className="details__label">Frequency:</span>
+                <span className="details__value">{type}</span>
             </p>
         </div>
     );

@@ -1,9 +1,9 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { Frequency } from "../../types/Frequency";
-import { useNavigate } from "react-router-dom";
-import "../../styles/AddForm.css";
-import {categories} from "../../data/mockData.ts";
-import {Category} from "../../types/Category.ts";
+import {SubmitHandler, useForm} from 'react-hook-form';
+import {Frequency} from '../../types/Frequency';
+import {useNavigate} from 'react-router-dom';
+import {categories} from '../../data/mockData';
+import {Category} from '../../types/Category';
+
 
 type FormFields = {
     name: string;
@@ -12,52 +12,60 @@ type FormFields = {
 };
 
 export default function AddCategoryForm() {
-    const { register, handleSubmit, formState: { errors } } = useForm<FormFields>({
-        defaultValues: { frequency: Frequency.MONTHLY },
+    const {
+        register,
+        handleSubmit,
+        formState: {errors},
+    } = useForm<FormFields>({
+        defaultValues: {frequency: Frequency.MONTHLY},
     });
 
     const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<FormFields> = (data) => {
-        let category: Category = {id: 1, name: data.name, limit: data.limit, frequency: data.frequency}
-        categories.push(category)
-        navigate("/categories");
+        const newCat: Category = {
+            id: 1,
+            name: data.name,
+            limit: data.limit,
+            frequency: data.frequency,
+        };
+        categories.push(newCat);
+        navigate('/categories');
     };
 
     const handleBackClick = () => {
-        navigate("/categories");
+        navigate('/categories');
     };
 
     return (
-        <div className="add-form">
+        <div className="form-card">
             <button className="back-btn" onClick={handleBackClick}>
                 &larr; Back
             </button>
 
             <h2>Add New Category</h2>
 
-            <form className="form-container" onSubmit={handleSubmit(onSubmit)}>
-                <label className="form-label">
-                    Category Name
+            <form className="form" onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-group">
+                    <label className="form-label">Category Name:</label>
                     <input
-                        {...register("name", {
+                        {...register('name', {
                             required: "Category name is required",
                             minLength: {
                                 value: 2,
                                 message: "Name must be at least 2 characters long",
-                            },
+                            }
                         })}
                         type="text"
-                        placeholder="e.g. Groceries"
                         className="form-input"
+                        placeholder="e.g. Groceries"
                     />
-                </label>
-                {errors.name && <p className="error-message">{errors.name.message}</p>}
-
-                <label className="form-label">
-                    Limit
+                    {errors.name && <p className="error-message">{errors.name.message}</p>}
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Limit:</label>
                     <input
-                        {...register("limit", {
+                        {...register('limit', {
                             required: "Limit is required",
                             min: {
                                 value: 0.01,
@@ -66,35 +74,29 @@ export default function AddCategoryForm() {
                             pattern: {
                                 value: /^\d+(\.\d{1,2})?$/,
                                 message: "Limit must have max 2 decimal places",
-                            },
+                            }
                         })}
                         type="number"
                         step="0.01"
-                        placeholder="e.g. 300"
                         className="form-input"
+                        placeholder="e.g. 300.00"
                     />
-                </label>
-                {errors.limit && <p className="error-message">{errors.limit.message}</p>}
+                    {errors.limit && <p className="error-message">{errors.limit.message}</p>}
+                </div>
 
-                {/* FREQUENCY Field */}
-                <label className="form-label">
-                    Frequency
+                <div className="form-group">
+                    <label className="form-label">Frequency:</label>
                     <select
-                        {...register("frequency", { required: "Frequency is required" })}
+                        {...register('frequency', {required: "Frequency is required" })}
                         className="form-select"
                     >
-                        {Object.values(Frequency).map((freq) => (
-                            <option key={freq} value={freq}>
-                                {freq}
-                            </option>
-                        ))}
                     </select>
-                </label>
-                {errors.frequency && (
-                    <p className="error-message">{errors.frequency.message}</p>
-                )}
+                    {errors.frequency && (
+                        <p className="error-message">{errors.frequency.message}</p>
+                    )}
+                </div>
 
-                <button type="submit" className="submit-btn">
+                <button className="form-btn" type="submit">
                     Add
                 </button>
             </form>

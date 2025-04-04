@@ -1,26 +1,29 @@
-import CategoryDetails from "./CategoryDetails.tsx";
-import "../../styles/Categories.css"
-import {categories} from "../../data/mockData.ts";
-import { useNavigate } from "react-router-dom";
-
-
+import {useNavigate} from 'react-router-dom';
+import {categories} from '../../data/mockData';
+import CategoryDetails from './CategoryDetails';
 
 
 export default function CategoryDetailsList() {
-
     const navigate = useNavigate();
 
     const handleAddCategoryClick = () => {
-        navigate("/categories/add");
+        navigate('/categories/add');
     };
 
     return (
-        <div className="list-wrapper">
-            <button className="add-category-btn" onClick={handleAddCategoryClick}>+ Add Category</button>
+        <div className="centered-container">
+            <div className="list-container">
+                <div className="list-actions">
+                    <button
+                        className="btn btn-center"
+                        onClick={handleAddCategoryClick}
+                    >
+                        + Add Category
+                    </button>
+                </div>
 
-            <div className="category-list-container">
                 {categories.map((cat, index) => (
-                    <div className="list-item-card" key={index}>
+                    <div key={index} className="list-item">
                         <CategoryDetails
                             description={cat.name}
                             limit={cat.limit}
