@@ -24,7 +24,7 @@ export default function ExpenseSummaryHeader({
                         <ExpenseItem
                             key={index}
                             description={expense.description}
-                            value={expense.value}
+                            value={expense.amount}
                         />
                     ))}
                 </div>

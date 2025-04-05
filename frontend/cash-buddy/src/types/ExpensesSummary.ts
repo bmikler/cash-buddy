@@ -3,5 +3,6 @@ import {Category} from "./Category.ts";
 
 export interface ExpensesSummary {
     category: Category,
+    balance: number;
     expenses: Expense[];
 }

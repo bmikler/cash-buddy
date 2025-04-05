@@ -1,0 +1,19 @@
+.spinner {
+    /* A ring spinner style */
+    border: 6px solid #f3f3f3;           /* Light gray background */
+    border-top: 6px solid #5f5bd7;       /* Your brand/accent color */
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    animation: spin 1s linear infinite;
+    margin: 2rem auto; /* centers horizontally if parent is text-align: center or flex */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

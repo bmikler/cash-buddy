@@ -2,7 +2,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Category } from '../../types/Category';
 import { Expense } from '../../types/Expense';
-import { expenses } from '../../data/mockData';
 
 type ExpenseFormFields = {
     description: string;
@@ -30,14 +29,13 @@ export default function AddExpenseForm() {
 
     const onSubmit: SubmitHandler<ExpenseFormFields> = (data) => {
         const newExpense: Expense = {
-            id: 1,
+            id: "1",
             description: data.description,
             date: new Date().toISOString(),
-            value: data.value,
-            categoryId: category?.id
+            amount: data.value,
         };
 
-        expenses.push(newExpense);
+        // expenses.push(newExpense);
         navigate('/expenses');
     };
 
