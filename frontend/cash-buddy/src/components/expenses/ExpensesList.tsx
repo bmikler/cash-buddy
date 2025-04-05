@@ -1,8 +1,7 @@
-import {useQuery} from "@tanstack/react-query";
 import {useState} from "react";
 import {useNavigate} from 'react-router-dom';
+import {useExpensesQuery} from "../../hooks/useExpensesQuery.ts";
 import {Category} from '../../types/Category';
-import {ExpensesSummary} from "../../types/ExpensesSummary.ts";
 import ErrorMessage from "../ErrorMessage.tsx";
 import LoadingSpinner from "../LoadingSpinner.tsx";
 import DateNavbar from "./DateNavbar.tsx";
@@ -20,20 +19,7 @@ export default function ExpensesList() {
         isError,
         error,
         isLoading,
-    } = useQuery({
-        queryKey: ['expenses', date],
-        queryFn: async () => {
-            const input = `http://localhost:8080/api/v1/expenses?date=${resolveDate()}`;
-            const response = await fetch(input);
-            return (await response.json()) as ExpensesSummary[];
-        }
-    })
-
-    function resolveDate() {
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        return `${month}-${year}`;
-    }
+    } = useExpensesQuery(date)
 
     const handleAddExpenseClick = (category: Category) => {
         navigate('/expenses/add', {state: {category}});
@@ -97,8 +83,6 @@ export default function ExpensesList() {
                     </div>
                 ))}
             </ul>
-
         </div>
-
     );
 }
