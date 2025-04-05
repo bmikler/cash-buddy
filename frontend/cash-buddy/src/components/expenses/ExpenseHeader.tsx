@@ -8,7 +8,7 @@ type ExpenseSummaryHeaderProps = {
     showDetails: boolean;
 };
 
-export default function ExpenseSummaryHeader({
+export default function ExpenseHeader({
                                                  categoryName,
                                                  balance,
                                                  expenses,

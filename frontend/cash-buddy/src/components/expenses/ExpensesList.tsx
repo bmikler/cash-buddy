@@ -1,58 +1,33 @@
+import {useQuery} from "@tanstack/react-query";
+import {useState} from "react";
 import {useNavigate} from 'react-router-dom';
 import {Category} from '../../types/Category';
-import ExpenseSummaryHeader from './ExpenseSummaryHeader';
-
-import {useEffect, useRef, useState} from "react";
-import DateHeader from "./DateHeader.tsx";
 import {ExpensesSummary} from "../../types/ExpensesSummary.ts";
-import LoadingSpinner from "../LoadingSpinner.tsx";
 import ErrorMessage from "../ErrorMessage.tsx";
+import LoadingSpinner from "../LoadingSpinner.tsx";
+import DateNavbar from "./DateNavbar.tsx";
 
-export default function ExpensesSummaryList() {
+import ExpenseHeader from './ExpenseHeader.tsx';
+
+export default function ExpensesList() {
     const navigate = useNavigate();
 
-    const [error, setError] = useState();
-    const [isLoading, setIsLoading] = useState(false);
-    const [expenses, setExpenses] = useState<ExpensesSummary[]>([]);
     const [showDetails, setShowDetails] = useState<{ [key: number]: boolean }>({});
     const [date, setDate] = useState(new Date());
 
-
-    const abortControllerRef = useRef<AbortController | null>(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            abortControllerRef.current?.abort();
-            abortControllerRef.current = new AbortController();
-
-            setIsLoading(true);
-
-            try {
-                let input = `http://localhost:8080/api/v1/expens1es?date=${resolveDate()}`;
-                const response = await fetch(input, {signal: abortControllerRef.current?.signal});
-
-                if (!response.ok) {
-                    throw new Error('Failed to fetch data');
-                }
-
-                const expenses = (await response.json()) as ExpensesSummary[];
-
-                setExpenses(expenses);
-            } catch (e: any) {
-
-                if (e.name === 'AbortError') {
-                    return;
-                }
-
-                setError(e);
-            } finally {
-                setIsLoading(false);
-            }
-
+    const {
+        data: expenses,
+        isError,
+        error,
+        isLoading,
+    } = useQuery({
+        queryKey: ['expenses', date],
+        queryFn: async () => {
+            const input = `http://localhost:8080/api/v1/expenses?date=${resolveDate()}`;
+            const response = await fetch(input);
+            return (await response.json()) as ExpensesSummary[];
         }
-
-        fetchData()
-    }, [date]);
+    })
 
     function resolveDate() {
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -79,14 +54,14 @@ export default function ExpensesSummaryList() {
         setDate((prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1, prevDate.getDay()));
     }
 
-    if (error) {
-        return <ErrorMessage message={error.toString()} />;
+    if (isError) {
+        return <ErrorMessage message={error.message}/>;
     }
 
     if (isLoading) {
         return (
             <div className="centered-container">
-                <DateHeader increase={nextDate} decrease={previousDate} date={date}/>
+                <DateNavbar increase={nextDate} decrease={previousDate} date={date}/>
                 <LoadingSpinner/>
             </div>
         )
@@ -94,18 +69,18 @@ export default function ExpensesSummaryList() {
 
     return (
         <div className="centered-container">
-            <DateHeader
+            <DateNavbar
                 increase={nextDate}
                 decrease={previousDate}
                 date={date}
             />
             <ul className="list-container">
-                {expenses.map((summary, index) => (
+                {expenses?.map((summary, index) => (
                     <div key={index} className="list-item" onClick={() => toggle(index)}>
 
                         <div className="list-item__top">
                             <div className="list-item__header">
-                                <ExpenseSummaryHeader
+                                <ExpenseHeader
                                     categoryName={summary.category.name}
                                     balance={summary.category.limit}
                                     expenses={summary.expenses}
