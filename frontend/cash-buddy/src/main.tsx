@@ -5,7 +5,7 @@ import App from './App.tsx'
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import CategoryDetailsList from "./components/categories/CategoryDetailsList.tsx";
 import AddCategoryForm from "./components/categories/AddCategoryForm.tsx";
-import ExpensesSummaryList from "./components/expenses/ExpensesSummaryList.tsx";
+import ExpensesList from "./components/expenses/ExpensesList.tsx";
 import AddExpenseForm from "./components/expenses/AddExpenseForm.tsx";
 
 const router = createBrowserRouter([
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'expenses',
-                element: <ExpensesSummaryList/>
+                element: <ExpensesList/>
             },
             {
                 path: 'expenses/add',

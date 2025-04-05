@@ -4,15 +4,13 @@ type DateHeaderProps = {
     date: Date;
 };
 
-export default function DateHeader({ increase, decrease, date }: DateHeaderProps) {
+export default function DateNavbar({ increase, decrease, date }: DateHeaderProps) {
     const options: Intl.DateTimeFormatOptions = { month: 'long', year: 'numeric' };
     const formattedDate = date.toLocaleDateString('en-US', options);
 
     return (
         <div className="date-header">
-            {/* Left arrow button */}
             <button className="date-header-btn" onClick={decrease} aria-label="Previous Month">
-                {/* Minimal inline SVG icon (arrow pointing left) */}
                 <svg
                     width="20"
                     height="20"
@@ -29,9 +27,7 @@ export default function DateHeader({ increase, decrease, date }: DateHeaderProps
 
             <h2 className="date-header-title">{formattedDate}</h2>
 
-            {/* Right arrow button */}
             <button className="date-header-btn" onClick={increase} aria-label="Next Month">
-                {/* Minimal inline SVG icon (arrow pointing right) */}
                 <svg
                     width="20"
                     height="20"
