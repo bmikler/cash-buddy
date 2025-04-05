@@ -15,8 +15,7 @@ class SecurityConfig {
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
             .cors {  }
-            .authorizeHttpRequests { auth -> auth.anyRequest().authenticated() }
-            .oauth2ResourceServer { it.jwt {  } }
+            .authorizeHttpRequests { auth -> auth.anyRequest().permitAll() }
         return http.build()
     }
 
@@ -25,7 +24,7 @@ class SecurityConfig {
         return object : WebMvcConfigurer {
             override fun addCorsMappings(registry: CorsRegistry) {
                 registry.addMapping("/api/**")
-                    .allowedOrigins("http://localhost:3000")
+                    .allowedOrigins("http://localhost:5173")
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                     .allowedHeaders("*")
                     .allowCredentials(true)
