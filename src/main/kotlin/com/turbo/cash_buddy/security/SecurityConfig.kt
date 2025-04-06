@@ -15,7 +15,8 @@ class SecurityConfig {
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
             .cors {  }
-            .authorizeHttpRequests { auth -> auth.anyRequest().permitAll() }
+            .authorizeHttpRequests { auth -> auth.anyRequest().authenticated() }
+            .oauth2Login { oauth2 -> oauth2.defaultSuccessUrl("http://localhost:5173", true) }
         return http.build()
     }
 
