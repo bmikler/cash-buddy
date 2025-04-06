@@ -31,16 +31,31 @@ body {
 .header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: var(--header-height);
-    background-color: var(--primary-color);
-    color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    justify-content: space-between; /* pushes the logout button to the right */
+    background-color: var(--primary-color, #5f5bd7);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header-title {
+    color: #fff;
     font-size: 1.8rem;
-    font-weight: 600;
+    margin: 0;
+}
+
+.logout-btn {
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Navbar */
