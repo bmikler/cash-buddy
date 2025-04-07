@@ -1,6 +1,7 @@
 import {Outlet} from 'react-router-dom';
 import Header from './components/Header';
 import LoadingSpinner from "./components/LoadingSpinner.tsx";
+import Login from "./components/Login.tsx";
 import Navbar from './components/Navbar';
 
 import './App.css';
@@ -9,7 +10,6 @@ import './styles/ButtonsStyles.css';
 import './styles/FormStyles.css';
 import './styles/DataStyles.css';
 import {useAuth} from "./hooks/useAuth.ts";
-import {BASE_URL} from "./url.ts";
 
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
     const { isError, isLoading } = useAuth();
 
     if (isError) {
-        window.location.href = `${BASE_URL}/oauth2/authorization/google`;
+        return <Login />
     }
 
     if (isLoading) {
